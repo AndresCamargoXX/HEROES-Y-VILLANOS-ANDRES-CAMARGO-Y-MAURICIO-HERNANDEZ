@@ -6,7 +6,7 @@ Aplicación móvil desarrollada con Ionic + Angular para explorar, buscar y visu
 
 ## Características
 - **Exploración**: Lista paginada de personajes con infinite scroll
-- **Búsqueda**: Por nombre y alias con debounce de 300ms
+- **Búsqueda**: Por nombre y alias con debounce de 500
 - **Filtros**: Por universo, afiliación y ordenamiento
 - **Detalles**: Información completa con estadísticas de poder
 - **Favoritos**: Persistencia local con Capacitor
