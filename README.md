@@ -12,7 +12,7 @@ Aplicación móvil desarrollada con Ionic + Angular para explorar, buscar y visu
 - **Favoritos**: Persistencia local con Capacitor
 - **Offline**: Funcionalidad básica sin conexión
 
-## Stack Tecnológico
+## Stack Tecnológicoooo
 - **Frontend**: Ionic 7 + Angular 17
 - **Lenguaje**: TypeScript
 - **Mobile**: Capacitor
