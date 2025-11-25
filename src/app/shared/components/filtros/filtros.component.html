@@ -1,0 +1,128 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="modal-title">Filtros y Ordenamiento</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrar()" fill="clear" class="close-btn" aria-label="Cerrar filtros">
+        <ion-icon name="close" slot="icon-only" aria-hidden="true"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="filters-content">
+  <!-- Filtro por Afiliación -->
+  <div class="filter-section">
+    <div class="section-header">
+      <ion-icon name="people" aria-hidden="true"></ion-icon>
+      <h3>Tipo de Personaje</h3>
+    </div>
+    <ion-segment [value]="afiliacion" (ionChange)="onAfiliacionChange($event)" class="custom-segment">
+      <ion-segment-button value="" class="segment-btn">
+        <ion-icon name="planet" aria-hidden="true"></ion-icon>
+        <ion-label>Todos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Hero" class="segment-btn">
+        <ion-icon name="shield-half" aria-hidden="true"></ion-icon>
+        <ion-label>Héroes</ion-label>
+      </ion-segment-button>
+      <!-- En la sección de tipo de personaje -->
+      <ion-segment-button value="Villain"     class="segment-btn segment-btn_villanos">
+        <ion-icon name="skull" aria-hidden="true"></ion-icon>
+        <ion-label style="color: rgb(189, 25, 25);">Villanos</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <!-- Filtro por Universo -->
+  <div class="filter-section">
+    <div class="section-header">
+      <ion-icon name="star" aria-hidden="true"></ion-icon>
+      <h3>Universo</h3>
+    </div>
+    <ion-segment [value]="universo" (ionChange)="onUniversoChange($event)" class="custom-segment">
+      <ion-segment-button value="" class="segment-btn">
+        <ion-label>Todos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="DC" class="segment-btn dc-btn">
+        <ion-label>DC</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Marvel" class="segment-btn marvel-btn">
+        <ion-label>Marvel</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <!-- Ordenamiento -->
+  <div class="filter-section">
+    <div class="section-header">
+      <ion-icon name="swap-vertical" aria-hidden="true"></ion-icon>
+      <h3>Ordenar por</h3>
+    </div>
+    <div class="order-options">
+      <ion-item 
+        button 
+        detail="false" 
+        [class.selected]="orden === 'nombre-asc'"
+        (click)="orden = 'nombre-asc'; onOrdenChange({detail: {value: 'nombre-asc'}})"
+        class="order-item">
+        <ion-icon name="arrow-up" slot="start" aria-hidden="true"></ion-icon>
+        <ion-label>Nombre (A-Z)</ion-label>
+        <ion-icon *ngIf="orden === 'nombre-asc'" name="checkmark" slot="end" color="primary" aria-hidden="true"></ion-icon>
+      </ion-item>
+
+      <ion-item 
+        button 
+        detail="false" 
+        [class.selected]="orden === 'nombre-desc'"
+        (click)="orden = 'nombre-desc'; onOrdenChange({detail: {value: 'nombre-desc'}})"
+        class="order-item">
+        <ion-icon name="arrow-down" slot="start" aria-hidden="true"></ion-icon>
+        <ion-label>Nombre (Z-A)</ion-label>
+        <ion-icon *ngIf="orden === 'nombre-desc'" name="checkmark" slot="end" color="primary" aria-hidden="true"></ion-icon>
+      </ion-item>
+
+      <ion-item 
+        button 
+        detail="false" 
+        [class.selected]="orden === 'rating-desc'"
+        (click)="orden = 'rating-desc'; onOrdenChange({detail: {value: 'rating-desc'}})"
+        class="order-item">
+        <ion-icon name="trending-up" slot="start" aria-hidden="true"></ion-icon>
+        <ion-label>Rating (Mayor a menor)</ion-label>
+        <ion-icon *ngIf="orden === 'rating-desc'" name="checkmark" slot="end" color="primary" aria-hidden="true"></ion-icon>
+      </ion-item>
+
+      <ion-item 
+        button 
+        detail="false" 
+        [class.selected]="orden === 'rating-asc'"
+        (click)="orden = 'rating-asc'; onOrdenChange({detail: {value: 'rating-asc'}})"
+        class="order-item">
+        <ion-icon name="trending-down" slot="start" aria-hidden="true"></ion-icon>
+        <ion-label>Rating (Menor a mayor)</ion-label>
+        <ion-icon *ngIf="orden === 'rating-asc'" name="checkmark" slot="end" color="primary" aria-hidden="true"></ion-icon>
+      </ion-item>
+    </div>
+  </div>
+
+  <!-- Acciones -->
+  <div class="actions-section">
+    <ion-button 
+      fill="outline" 
+      (click)="limpiar()" 
+      expand="block" 
+      class="action-btn clear-btn"
+      aria-label="Limpiar todos los filtros">
+      <ion-icon name="refresh" slot="start" aria-hidden="true"></ion-icon>
+      Limpiar
+    </ion-button>
+    <ion-button 
+      (click)="aplicar()" 
+      expand="block" 
+      class="action-btn apply-btn"
+      aria-label="Aplicar filtros">
+      <ion-icon name="checkmark" slot="start" aria-hidden="true"></ion-icon>
+      Aplicar
+    </ion-button>
+  </div>
+</ion-content>

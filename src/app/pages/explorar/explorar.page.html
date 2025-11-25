@@ -1,0 +1,114 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>PROYECTO HEROES Y VILLANOS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="filtros-container">
+    <div class="fila-filtros">
+      <div class="titulo-filtro">Tipo:</div>
+      <button 
+        [class.activo]="filtroAfiliacion === ''"
+        (click)="cambiarAfiliacion({detail: {value: ''}})">
+        Todos
+      </button>
+      <button 
+        [class.activo]="filtroAfiliacion === 'Hero'"
+        (click)="cambiarAfiliacion({detail: {value: 'Hero'}})">
+        Héroes
+      </button>
+      <button 
+        [class.activo]="filtroAfiliacion === 'Villain'"
+        (click)="cambiarAfiliacion({detail: {value: 'Villain'}})">
+        Villanos
+      </button>
+    </div>
+
+    <div class="fila-filtros">
+      <div class="titulo-filtro">Universo:</div>
+      <button 
+        [class.activo]="filtroUniverso === ''"
+        (click)="cambiarUniverso({detail: {value: ''}})">
+        Todos
+      </button>
+      <button 
+        [class.activo]="filtroUniverso === 'Marvel'"
+        (click)="cambiarUniverso({detail: {value: 'Marvel'}})">
+        Marvel
+      </button>
+      <button 
+        [class.activo]="filtroUniverso === 'DC'"
+        (click)="cambiarUniverso({detail: {value: 'DC'}})">
+        DC
+      </button>
+    </div>
+
+    <div class="fila-filtros">
+      <div class="titulo-filtro">Orden:</div>
+      <button 
+        [class.activo]="orden === 'nombre-asc'"
+        (click)="cambiarOrden('nombre-asc')">
+        A - Z
+      </button>
+      <button 
+        [class.activo]="orden === 'nombre-desc'"
+        (click)="cambiarOrden('nombre-desc')">
+        Z - A
+      </button>
+    </div>
+
+    <div class="fila-filtros" *ngIf="hayFiltrosActivos()">
+      <div class="titulo-filtro"></div>
+      <button class="boton-limpiar" (click)="limpiarFiltros()">
+        LIMPIAR
+      </button>
+    </div>
+  </div>
+
+  <div class="busqueda-container">
+    <input 
+      type="text" 
+      placeholder="Buscar..."
+      [value]="queryBusqueda"
+      (input)="onBuscar($event)"
+      class="input-busqueda">
+  </div>
+
+  <ion-list *ngIf="!cargando && !error">
+    <ion-item 
+      *ngFor="let personaje of personajesFiltrados" 
+      [routerLink]="['/detalles-personaje', personaje.id]">
+      
+      <ion-avatar slot="start">
+        <img [src]="personaje.image" [alt]="personaje.name">
+      </ion-avatar>
+      
+      <ion-label>
+        <h2>{{ personaje.name }}</h2>
+        <p>{{ personaje.universe }}</p>
+      </ion-label>
+
+      <div 
+        slot="end" 
+        class="badge-personalizado"
+        [class.heroe]="personaje.affiliation === 'Hero'"
+        [class.villano]="personaje.affiliation === 'Villain'">
+        {{ getTextoAfiliacion(personaje.affiliation) }}
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="cargando" class="estado-container">
+    <p>Cargando personajes...</p>
+  </div>
+
+  <div *ngIf="error" class="estado-container">
+    <p>Error al cargar</p>
+    <button (click)="cargarPersonajes()">Volver a cargar</button>
+  </div>
+
+  <div *ngIf="!cargando && personajesFiltrados.length === 0" class="estado-container">
+    <p>No se encontraron personajes</p>
+  </div>
+</ion-content>

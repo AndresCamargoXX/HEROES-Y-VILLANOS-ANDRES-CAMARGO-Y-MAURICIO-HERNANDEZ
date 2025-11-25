@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ajustes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="configuracion-simple">
+    
+    <div class="seccion">
+      <h2 class="titulo-seccion">APARIENCIA</h2>
+      
+      <div class="opcion">
+        <label>Tema oscuro</label>
+        <ion-toggle 
+          [checked]="temaOscuro"
+          (ionChange)="onTemaCambiado($event)"
+          class="toggle-feo">
+        </ion-toggle>
+      </div>
+
+      <div class="opcion">
+        <label>Tamaño del texto</label>
+        <select 
+          [value]="tamanoFuente"
+          (change)="onTamanoFuenteCambiado($event)"
+          class="select-feo">
+          <option value="normal">Normal</option>
+          <option value="grande">Grande</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="seccion">
+      <h2 class="titulo-seccion">IDIOMA</h2>
+      
+      <div class="opcion">
+        <label>Idioma de la app</label>
+        <select 
+          [value]="idioma"
+          (change)="onIdiomaCambiado($event)"
+          class="select-feo">
+          <option value="es">Español</option>
+          <option value="en">Inglés</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+</ion-content>

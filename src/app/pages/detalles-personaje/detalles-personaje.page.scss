@@ -1,0 +1,151 @@
+.detalle-simple {
+  background: var(--ion-background-color);
+  color: var(--ion-text-color);
+}
+
+.contenido-plano {
+  padding: 16px;
+  background: var(--ion-background-color);
+}
+
+.imagen-personaje {
+  text-align: center;
+  margin-bottom: 20px;
+  
+  .imagen {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 3px solid var(--ion-text-color);
+    border-radius: 0;
+  }
+}
+
+.info-basica {
+  margin-bottom: 25px;
+  
+  .nombre-feo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--ion-text-color);
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--ion-text-color);
+    padding-bottom: 5px;
+  }
+  
+  .etiquetas {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    
+    .etiqueta {
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: bold;
+      border: 2px solid;
+      border-radius: 0;
+    }
+    
+    .heroe {
+      background: #007bff;
+      color: white;
+      border-color: #0056b3;
+    }
+    
+    .villano {
+      background: #ffa500;
+      color: black;
+      border-color: #cc8400;
+    }
+    
+    .universo {
+      background: #666;
+      color: white;
+      border-color: #444;
+    }
+  }
+}
+
+.seccion {
+  margin-bottom: 25px;
+  
+  .titulo-seccion {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--ion-text-color);
+    margin: 0 0 10px 0;
+    background: var(--ion-color-light);
+    padding: 8px 12px;
+    border-left: 4px solid var(--ion-text-color);
+  }
+}
+
+.biografia-feo {
+  background: var(--ion-color-light-shade);
+  padding: 15px;
+  border: 2px solid var(--ion-color-medium);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--ion-text-color);
+}
+
+.lista-poderes,
+.lista-debilidades {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  
+  .poder-item,
+  .debilidad-item {
+    padding: 6px 12px;
+    border: 2px solid;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .poder-item {
+    background: var(--ion-color-success-tint);
+    border-color: var(--ion-color-success);
+    color: var(--ion-color-success-contrast);
+  }
+  
+  .debilidad-item {
+    background: var(--ion-color-danger-tint);
+    border-color: var(--ion-color-danger);
+    color: var(--ion-color-danger-contrast);
+  }
+}
+
+.estadisticas-cuadradas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  
+  .estadistica-item {
+    border: 2px solid var(--ion-text-color);
+    padding: 10px;
+    text-align: center;
+    background: var(--ion-background-color);
+    
+    .estadistica-numero {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--ion-text-color);
+      margin-bottom: 5px;
+    }
+    
+    .estadistica-nombre {
+      font-size: 11px;
+      color: var(--ion-color-medium);
+      text-transform: uppercase;
+    }
+  }
+}
+
+.cargando, .error {
+  text-align: center;
+  padding: 50px;
+  background: var(--ion-background-color);
+  color: var(--ion-text-color);
+}

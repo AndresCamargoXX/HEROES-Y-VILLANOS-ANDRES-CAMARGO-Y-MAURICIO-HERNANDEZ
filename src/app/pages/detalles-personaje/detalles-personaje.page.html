@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volverAInicio()" fill="clear">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Detalles</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="alternarFavorito()" fill="clear" [color]="esFavorito ? 'warning' : 'medium'">
+        <ion-icon [name]="esFavorito ? 'star' : 'star-outline'" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="detalle-simple" [fullscreen]="true" *ngIf="!cargando && personaje">
+  
+  <div class="contenido-plano">
+    
+    <div class="imagen-personaje">
+      <img [src]="personaje.image" [alt]="personaje.name" class="imagen">
+    </div>
+
+    <div class="info-basica">
+      <h1 class="nombre-feo">{{ personaje.name }}</h1>
+      <div class="etiquetas">
+        <span class="etiqueta heroe" *ngIf="personaje.affiliation === 'Hero'">HÉROE</span>
+        <span class="etiqueta villano" *ngIf="personaje.affiliation === 'Villain'">VILLANO</span>
+        <span class="etiqueta universo">{{ personaje.universe }}</span>
+      </div>
+    </div>
+
+    <div class="seccion">
+      <h2 class="titulo-seccion">BIOGRAFÍA</h2>
+      <div class="biografia-feo">
+        {{ personaje.biography }}
+      </div>
+    </div>
+
+    <div class="seccion" *ngIf="personaje.powers && personaje.powers.length > 0">
+      <h2 class="titulo-seccion">PODERES</h2>
+      <div class="lista-poderes">
+        <div class="poder-item" *ngFor="let poder of personaje.powers">
+          {{ poder }}
+        </div>
+      </div>
+    </div>
+
+    <div class="seccion" *ngIf="personaje.weaknesses && personaje.weaknesses.length > 0">
+      <h2 class="titulo-seccion">DEBILIDADES</h2>
+      <div class="lista-debilidades">
+        <div class="debilidad-item" *ngFor="let debilidad of personaje.weaknesses">
+          {{ debilidad }}
+        </div>
+      </div>
+    </div>
+
+    <div class="seccion" *ngIf="powerStatsArray.length > 0">
+      <h2 class="titulo-seccion">ESTADÍSTICAS</h2>
+      <div class="estadisticas-cuadradas">
+        <div class="estadistica-item" *ngFor="let stat of powerStatsArray">
+          <div class="estadistica-numero">{{ stat.value }}</div>
+          <div class="estadistica-nombre">{{ stat.name }}</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>
+
+<div *ngIf="cargando" class="cargando">
+  <p>Cargando...</p>
+</div>
+
+<div *ngIf="!cargando && !personaje" class="error">
+  <p>No se encontró el personaje</p>
+  <button (click)="volverAInicio()">Volver</button>
+</div>
